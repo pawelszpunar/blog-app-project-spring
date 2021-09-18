@@ -50,7 +50,7 @@ public class PostRestController {
         return PostMapper.map(postService.getSinglePostByUuid(uuid));
     }
 
-    @PostMapping(value = "/admin/post")
+    @PostMapping(value = "/admin/post", produces = "application/json")
     public PostDto createNewPost(
             @RequestBody PostEntity postEntity,
             @RequestParam(required = false, value = "user", defaultValue = "1") Long user_id) {

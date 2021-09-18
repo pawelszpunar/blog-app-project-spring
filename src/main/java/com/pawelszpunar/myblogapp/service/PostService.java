@@ -23,7 +23,7 @@ public class PostService {
     private UserService userService;
 
     public Page<PostEntity> getAllPosts(Pageable pageable) {
-        return postRepository.findAll(pageable);
+        return postRepository.findAllByOrderByCreatedDesc(pageable);
     }
 
     public PostEntity getSinglePostById(Long id) {

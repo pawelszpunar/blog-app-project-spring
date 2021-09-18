@@ -8,9 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,11 +24,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String uuid;
+    private String uuid = UUID.randomUUID().toString();
     private String username;
     private String password;
     private int active;
-    private String roles;
     private String permissions;
     private String avatar;
 
@@ -37,6 +38,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<CommentEntity> comments;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -51,7 +55,7 @@ public class UserEntity {
         return uuid;
     }
 
-    public UserEntity setUuid(String uuid) {
+    public UserEntity setUuid() {
         this.uuid = UUID.randomUUID().toString();
         return this;
     }
@@ -101,15 +105,6 @@ public class UserEntity {
         return this;
     }
 
-    public String getRoles() {
-        return roles;
-    }
-
-    public UserEntity setRoles(String roles) {
-        this.roles = roles;
-        return this;
-    }
-
     public String getPermissions() {
         return permissions;
     }
@@ -127,4 +122,15 @@ public class UserEntity {
         this.avatar = avatar;
         return this;
     }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(Collection<Role> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+
 }

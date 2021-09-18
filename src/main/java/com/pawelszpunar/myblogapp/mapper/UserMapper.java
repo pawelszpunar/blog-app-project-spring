@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class UserMapper {
 
-    public static UserDto map(UserEntity user) {
+/*    public static UserDto map(UserEntity user) {
         return new UserDto()
                 .setUsername(user.getUsername())
                 .setPassword(user.getPassword())
@@ -42,5 +42,5 @@ public class UserMapper {
                 .stream()
                 .map(UserMapper::mapUuidAndUsername)
                 .collect(Collectors.toList());
-    }
+    }*/
 }

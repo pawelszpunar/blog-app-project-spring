@@ -1,3 +1,4 @@
+/*
 package com.pawelszpunar.myblogapp;
 
 import org.junit.jupiter.api.Test;
@@ -11,3 +12,4 @@ class MyBlogAppApplicationTests {
 	}
 
 }
+*/
